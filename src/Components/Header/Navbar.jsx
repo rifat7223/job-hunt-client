@@ -19,6 +19,7 @@ logout()
     <>
       <li><Link to={'/'}>Home</Link></li>
       <li><Link to={'/alljob'}>ALL Jobs</Link></li>
+      <li><Link to={'/addajob'}>Add a job</Link></li>
     </>
   );
 

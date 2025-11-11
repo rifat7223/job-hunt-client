@@ -12,16 +12,22 @@ import Register from './Components/Header/Pages/Register.jsx';
 import AuthProvider from './Context/AuthProvider.jsx'; 
 import AllJobs from './Components/Header/Pages/AllJobs.jsx';
 import PrivateRoute from './Context/PrivateRoute.jsx';
+import AddaJobs from './Components/AddaJobs.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
     Component: Root,
     children: [
-      { index: true, element:<Home></Home> },
-      { path: '/alljob', element:<PrivateRoute><AllJobs></AllJobs></PrivateRoute> },
+      { index: true,
+        loader:()=>fetch('http://localhost:3000/job'),
+         element:<Home></Home> },
+      { path: '/alljob',
+        loader:()=>fetch('http://localhost:3000/allJobs'),
+         element:<PrivateRoute><AllJobs></AllJobs></PrivateRoute> },
+         {path:'/addajob',element:<AddaJobs></AddaJobs>},
       { path: '/login', Component: Login },
-      { path: '/register', Component: Register }
+      { path: '/register', Component: Register },
     ]
   },
 ]);
