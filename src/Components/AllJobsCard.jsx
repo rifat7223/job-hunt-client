@@ -1,7 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 const AllJobsCard = ({allJobs}) => {
-     const { title, category, postedBy, summary, coverImage }=allJobs
+     const { title, category, postedBy, summary, coverImage,_id }=allJobs
+     console.log(allJobs)
     return (
         <div>
             <div className="max-w-sm rounded-2xl overflow-hidden shadow-lg border p-4 bg-white hover:shadow-2xl transition">
@@ -26,9 +28,9 @@ const AllJobsCard = ({allJobs}) => {
       </div>
 
       {/* Optional Button */}
-      <button className="mt-4 w-full bg-blue-600 text-white py-2 rounded-xl hover:bg-blue-700 transition">
+      <Link to={`/jobdetails/${_id}`} >
         View Details
-      </button>
+      </Link>
 
     </div>
         </div>

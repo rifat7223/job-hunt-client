@@ -1,10 +1,43 @@
-import React from 'react';
+// import React, { useContext } from 'react';
+import { AuthContext } from '../Context/AuthProvider';
 
 const AddaJobs = () => {
+    // const {user}=useContext(AuthContext)
+    const handleSubmit=(e)=>{
+       e.preventDefault()
+       const newJob={
+        title:e.target.title.value,
+       postedBy:e.target.postedBy.value,
+        category:e.target.category.value,
+        summary:e.target.summary.value,
+        coverImage:e.target.coverImage.value,
+        // created_by:user.email
+        email:e.target.userEmail.value
+       }
+      
+       fetch('http://localhost:3000/allJobs',{
+        method:"POST",
+        headers:{
+            "content-type":"application/json"
+        },
+        body:JSON.stringify(newJob)
+       })
+
+       .then(res=>res.json())
+       .then(data=>{
+        console.log(data);
+       })
+        .catch(error=>{
+            console.log(error)
+            e.target.reset()
+        })
+    
+    }
+
     return (
         <div>
              <form
-    //   onSubmit={handleSubmit}
+      onSubmit={handleSubmit}
       className="max-w-md mx-auto bg-white p-6 rounded-xl shadow-md space-y-4"
     >
       <h2 className="text-2xl font-semibold text-center">Add Job Post</h2>

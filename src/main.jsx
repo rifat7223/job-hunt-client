@@ -13,6 +13,8 @@ import AuthProvider from './Context/AuthProvider.jsx';
 import AllJobs from './Components/Header/Pages/AllJobs.jsx';
 import PrivateRoute from './Context/PrivateRoute.jsx';
 import AddaJobs from './Components/AddaJobs.jsx';
+import JobDetails from './Components/Header/Pages/JobDetails.jsx';
+import UpdateProfile from './Components/Header/Pages/UpdateProfile.jsx';
 
 const router = createBrowserRouter([
   {
@@ -28,6 +30,16 @@ const router = createBrowserRouter([
          {path:'/addajob',element:<AddaJobs></AddaJobs>},
       { path: '/login', Component: Login },
       { path: '/register', Component: Register },
+      {
+        path:'/jobdetails/:id', element:<JobDetails></JobDetails>,
+       loader: ({ params }) => fetch(`http://localhost:3000/allJobs/${params.id}`).then(res => res.json())
+        
+      },
+      {
+        path:'/updateprofile/:id',element:<UpdateProfile></UpdateProfile>,
+         loader: ({ params }) => fetch(`http://localhost:3000/allJobs/${params.id}`).then(res => res.json())
+
+      }
     ]
   },
 ]);
