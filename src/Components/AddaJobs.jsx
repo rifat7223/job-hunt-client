@@ -1,8 +1,8 @@
-// import React, { useContext } from 'react';
+import React, { useContext } from 'react';
 import { AuthContext } from '../Context/AuthProvider';
 
 const AddaJobs = () => {
-    // const {user}=useContext(AuthContext)
+    const {user}=useContext(AuthContext)
     const handleSubmit=(e)=>{
        e.preventDefault()
        const newJob={
@@ -95,6 +95,7 @@ const AddaJobs = () => {
         type="email"
         name="userEmail"
         placeholder="Your Email"
+       defaultValue={user?.email || ""}
         // value={job.userEmail}
         // onChange={handleChange}
         className="w-full p-2 border rounded-md"

@@ -8,7 +8,7 @@ const AllJobs = () => {
     return (
         <div className='grid grid-cols-4 gap-6'>
             {
-                data.map(allJobs=><AllJobsCard allJobs={allJobs}></AllJobsCard>)
+                data.map(allJobs=><AllJobsCard key={allJobs._id} allJobs={allJobs}></AllJobsCard>)
             }
         </div>
     );

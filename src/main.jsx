@@ -15,6 +15,8 @@ import PrivateRoute from './Context/PrivateRoute.jsx';
 import AddaJobs from './Components/AddaJobs.jsx';
 import JobDetails from './Components/Header/Pages/JobDetails.jsx';
 import UpdateProfile from './Components/Header/Pages/UpdateProfile.jsx';
+import MyaddJob from './Components/Header/Pages/MyaddJob.jsx';
+
 
 const router = createBrowserRouter([
   {
@@ -39,6 +41,9 @@ const router = createBrowserRouter([
         path:'/updateprofile/:id',element:<UpdateProfile></UpdateProfile>,
          loader: ({ params }) => fetch(`http://localhost:3000/allJobs/${params.id}`).then(res => res.json())
 
+      },
+      {
+        path:'/myaddjob', element:<MyaddJob></MyaddJob>
       }
     ]
   },
