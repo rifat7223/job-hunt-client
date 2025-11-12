@@ -1,8 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../Context/AuthProvider';
 import Swal from 'sweetalert2';
+import { Link,  } from 'react-router';
 
 const MyaddJob = () => {
+   
     const {user}=useContext(AuthContext)
     const[myjob,setJob]=useState([])
     useEffect(()=>{
@@ -94,7 +96,12 @@ const MyaddJob = () => {
           <br />
           <span className="badge badge-ghost badge-sm">Desktop Support Technician</span>
         </td>
-        <td><div className="badge badge-warning">Update job status</div></td>
+       <td>
+  <Link to={`/updateprofile/${myjob._id}`} className="badge badge-warning">
+    Update job status
+  </Link>
+</td>
+
         <th>
           <button onClick={()=>handleDlete(myjob._id)} className="badge badge-warning">delete job</button>
         </th>
