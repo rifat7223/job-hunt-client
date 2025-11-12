@@ -16,6 +16,8 @@ import AddaJobs from './Components/AddaJobs.jsx';
 import JobDetails from './Components/Header/Pages/JobDetails.jsx';
 import UpdateProfile from './Components/Header/Pages/UpdateProfile.jsx';
 import MyaddJob from './Components/Header/Pages/MyaddJob.jsx';
+import NotFound from './Components/Header/Pages/NotFound.jsx';
+import { QueryClient } from '@tanstack/react-query';
 
 
 const router = createBrowserRouter([
@@ -44,15 +46,21 @@ const router = createBrowserRouter([
       },
       {
         path:'/myaddjob', element:<MyaddJob></MyaddJob>
-      }
+      },
+      { path: "/*", element: <NotFound></NotFound>},
     ]
   },
+
 ]);
 
-createRoot(document.getElementById('root')).render(
+const queryClient = new QueryClient();
+
+createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <AuthProvider>  
-      <RouterProvider router={router} />
-    </AuthProvider>
-  </StrictMode>,
+    <QueryClientProvider client={queryClient}>    
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
+    </QueryClientProvider>
+  </StrictMode>
 );
