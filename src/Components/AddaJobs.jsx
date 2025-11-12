@@ -1,9 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext,  } from 'react';
 import { AuthContext } from '../Context/AuthProvider';
 
 const AddaJobs = () => {
     const {user}=useContext(AuthContext)
+     
     const handleSubmit=(e)=>{
+      console.log('click')
        e.preventDefault()
        const newJob={
         title:e.target.title.value,
@@ -11,10 +13,11 @@ const AddaJobs = () => {
         category:e.target.category.value,
         summary:e.target.summary.value,
         coverImage:e.target.coverImage.value,
-        // created_by:user.email
-        email:e.target.userEmail.value
+        
+        email:e.target.userEmail.value,
+         createdAt: new Date()
        }
-      
+      console.log(newJob)
        fetch('http://localhost:3000/allJobs',{
         method:"POST",
         headers:{
@@ -26,10 +29,12 @@ const AddaJobs = () => {
        .then(res=>res.json())
        .then(data=>{
         console.log(data);
+        e.target.reset()
        })
+       
         .catch(error=>{
             console.log(error)
-            e.target.reset()
+            
         })
     
     }
@@ -46,8 +51,7 @@ const AddaJobs = () => {
         type="text"
         name="title"
         placeholder="Job Title"
-        // value={job.title}
-        // onChange={handleChange}
+       
         className="w-full p-2 border rounded-md"
         required
       />
@@ -56,8 +60,7 @@ const AddaJobs = () => {
         type="text"
         name="postedBy"
         placeholder="Posted By"
-        // value={job.postedBy}
-        // onChange={handleChange}
+       
         className="w-full p-2 border rounded-md"
         required
       />
@@ -66,8 +69,7 @@ const AddaJobs = () => {
         type="text"
         name="category"
         placeholder="Category (Web Dev, Marketing, etc.)"
-        // value={job.category}
-        // onChange={handleChange}
+       
         className="w-full p-2 border rounded-md"
         required
       />
@@ -75,8 +77,7 @@ const AddaJobs = () => {
       <textarea
         name="summary"
         placeholder="Short summary"
-        // value={job.summary}
-        // onChange={handleChange}
+        
         className="w-full p-2 border rounded-md"
         required
       />
@@ -85,8 +86,7 @@ const AddaJobs = () => {
         type="text"
         name="coverImage"
         placeholder="Cover Image URL"
-        // value={job.coverImage}
-        // onChange={handleChange}
+        
         className="w-full p-2 border rounded-md"
         required
       />
@@ -96,8 +96,7 @@ const AddaJobs = () => {
         name="userEmail"
         placeholder="Your Email"
        defaultValue={user?.email || ""}
-        // value={job.userEmail}
-        // onChange={handleChange}
+       
         className="w-full p-2 border rounded-md"
         required
       />

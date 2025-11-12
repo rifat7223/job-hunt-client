@@ -1,65 +1,61 @@
-import React from 'react';
-import { FaEnvelope, FaLayerGroup, FaUser } from 'react-icons/fa';
-import { Link, useLoaderData } from 'react-router';
+import React, { useContext } from "react";
+import { useLoaderData } from "react-router";
+import { Link, useNavigate } from "react-router";
+import axios from "axios";
+import { AuthContext } from "../../../Context/AuthProvider";
 
 const JobDetails = () => {
-    const job=useLoaderData()
-    
-    return (
-        <div className="max-w-5xl mx-auto mt-10 p-6 bg-white shadow-2xl rounded-xl border border-gray-200">
-      
-      {/* Cover Image */}
-      <div className="w-full">
-        <img
-          src={job.coverImage}
-          alt="Job Cover"
-          className="w-full h-80 object-cover rounded-lg"
-        />
-      </div>
+  const job = useLoaderData();
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-      {/* Job Info */}
-      <div className="mt-6 space-y-4">
+  const canAccept = user?.email !== job.email;
 
-        {/* Title */}
-        <h1 className="text-3xl font-bold text-gray-800">{job.title}</h1>
+  const handleAccept = async () => {
+    try {
+      await axios.post("http://localhost:3000/acceptedTasks", {
+        ...job,
+        userEmail: user.email,
+        acceptedAt: new Date().toISOString(),
+      });
 
-        {/* Category + Posted By */}
-        <div className="flex items-center gap-6 text-gray-600 text-sm">
-          <div className="flex items-center gap-2">
-            <FaLayerGroup className="text-blue-500" />
-            <span>{job.category}</span>
-          </div>
+      alert("Job accepted!");
+      navigate("/accepted-tasks"); // go to Accepted Tasks page
+    } catch (error) {
+      console.error(error);
+      alert(error.response?.data?.error || "Failed to accept job");
+    }
+  };
 
-          <div className="flex items-center gap-2">
-            <FaUser className="text-green-500" />
-            <span>{job.postedBy}</span>
-          </div>
-        </div>
+  return (
+    <div className="max-w-5xl mx-auto mt-10 p-6 bg-white shadow-xl rounded-xl">
+      <h1 className="text-3xl font-bold">{job.title}</h1>
+      <p>Posted By: {job.postedBy}</p>
+      <p>Category: {job.category}</p>
+      <p>{job.summary}</p>
 
-        {/* Summary */}
-        <p className="text-gray-700 text-lg leading-relaxed">{job.summary}</p>
-
-        {/* Email */}
-        <div className="flex items-center gap-2 text-gray-700">
-          <FaEnvelope className="text-red-500" />
-          <span>{job.email}</span>
-        </div>
-
-        {/* Action Buttons */}
-        <div className="pt-5 flex gap-4">
-          <button className="bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-lg text-lg font-semibold transition">
+      <div className="mt-4 flex gap-4">
+        {canAccept ? (
+          <button
+            onClick={handleAccept}
+            className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition"
+          >
             Accept ✅
           </button>
+        ) : (
+          <p className="text-red-500 font-semibold">
+            You cannot accept your own job ❌
+          </p>
+        )}
 
-          <Link to={`/updateprofile/${job._id}`}>
+        <Link to={`/updateprofile/${job._id}`}>
           <button className="bg-gray-200 hover:bg-gray-300 text-black py-3 px-6 rounded-lg text-lg font-semibold transition">
             Update profile
           </button>
-          </Link>
-        </div>
+        </Link>
       </div>
     </div>
-    );
+  );
 };
 
 export default JobDetails;

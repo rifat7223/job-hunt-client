@@ -21,6 +21,7 @@ logout()
       <li><Link to={'/alljob'}>ALL Jobs</Link></li>
       <li><Link to={'/addajob'}>Add a job</Link></li>
       <li><Link to={'/myaddjob'}> My Added job</Link></li>
+      <li><Link to={'/acceptedTasks'}> Accepted Tasks</Link></li>
     </>
   );
 

@@ -17,7 +17,9 @@ import JobDetails from './Components/Header/Pages/JobDetails.jsx';
 import UpdateProfile from './Components/Header/Pages/UpdateProfile.jsx';
 import MyaddJob from './Components/Header/Pages/MyaddJob.jsx';
 import NotFound from './Components/Header/Pages/NotFound.jsx';
-import { QueryClient } from '@tanstack/react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import ThemeProvider from './Context/ThemeProvider.jsx';
+import AcceptedTasks from './Components/Header/Pages/AcceptedTasks.jsx';
 
 
 const router = createBrowserRouter([
@@ -47,6 +49,9 @@ const router = createBrowserRouter([
       {
         path:'/myaddjob', element:<MyaddJob></MyaddJob>
       },
+      {
+        path:'/acceptedTasks', element:<AcceptedTasks></AcceptedTasks>
+      },
       { path: "/*", element: <NotFound></NotFound>},
     ]
   },
@@ -57,10 +62,12 @@ const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <QueryClientProvider client={queryClient}>    
+    <ThemeProvider>
+      <QueryClientProvider client={queryClient}>    
       <AuthProvider>
         <RouterProvider router={router} />
       </AuthProvider>
     </QueryClientProvider>
+    </ThemeProvider>
   </StrictMode>
 );
