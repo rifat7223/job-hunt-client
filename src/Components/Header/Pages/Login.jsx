@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../../../Context/AuthProvider';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from '../../../Firbase/Firbase.init';
+import { toast } from 'react-toastify';
 
 const Login = () => {
   const { singIn, singInGoogle } = useContext(AuthContext);
@@ -23,7 +24,7 @@ const Login = () => {
       })
       .catch(error => {
         console.log(error.code, error.message);
-        alert(error.message);
+        toast(error.message);
       });
   };
 
@@ -31,15 +32,15 @@ const Login = () => {
     const email = emailRef.current.value;
 
     if (!email) {
-      return alert("Please enter your email first!");
+      return toast("Please enter your email first!");
     }
 
     sendPasswordResetEmail(auth, email)
       .then(() => {
-        alert("Password reset email sent! Check your inbox 📩");
+        toast("Password reset email sent! Check your inbox 📩");
       })
       .catch(error => {
-        alert(error.message);
+        toast(error.message);
       });
   };
 
@@ -67,7 +68,7 @@ const Login = () => {
       })
       .catch(error => {
         console.log(error.message);
-        alert(error.message);
+        toast(error.message);
       });
   };
 

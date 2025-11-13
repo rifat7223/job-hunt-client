@@ -2,6 +2,7 @@ import { Link, useNavigate } from 'react-router';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../../Context/AuthProvider';
 import { Eye, EyeOff } from 'lucide-react';
+import { toast } from 'react-toastify';
 
 
 const Register = () => {
@@ -23,15 +24,15 @@ const Register = () => {
         const lowerCaseRegex = /[a-z]/;
 
         if (!upperCaseRegex.test(password)) {
-            alert("Password must contain at least ONE uppercase letter!");
+            toast("Password must contain at least ONE uppercase letter!");
             return;
         }
         if (!lowerCaseRegex.test(password)) {
-            alert("Password must contain at least ONE lowercase letter!");
+            toast("Password must contain at least ONE lowercase letter!");
             return;
         }
         if (password.length < 6) {
-            alert("Password must be at least 6 characters long!");
+            toast("Password must be at least 6 characters long!");
             return;
         }
 
@@ -42,7 +43,7 @@ const Register = () => {
                 updateUser({diaplayName:name,photoURL:photo})
                 .then(()=>{
                  setUser({...user,diaplayName:name,photoURL:photo});
-                alert("Registration successful 🎉");
+                ("Registration successful 🎉");
                 navigate('/')
                 })
                 .catch((error)=>{

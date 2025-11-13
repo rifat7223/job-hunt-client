@@ -3,6 +3,7 @@ import { useLoaderData } from "react-router";
 import { Link, useNavigate } from "react-router";
 import axios from "axios";
 import { AuthContext } from "../../../Context/AuthProvider";
+import { toast } from "react-toastify";
 
 const JobDetails = () => {
   const job = useLoaderData();
@@ -19,11 +20,11 @@ const JobDetails = () => {
         acceptedAt: new Date().toISOString(),
       });
 
-      alert("Job accepted!");
+      toast("Job accepted!");
       navigate("/accepted-tasks"); // go to Accepted Tasks page
     } catch (error) {
       console.error(error);
-      alert(error.response?.data?.error || "Failed to accept job");
+      toast(error.response?.data?.error || "Failed to accept job");
     }
   };
 
