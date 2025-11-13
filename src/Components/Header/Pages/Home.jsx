@@ -1,42 +1,41 @@
 import React, { useContext } from "react";
-
-import Banner from "../../Banner";
 import { useLoaderData } from "react-router";
-import JobCard from "../../JobCard";
 import { ThemeContext } from "../../../Context/ThemeProvider";
-import AboutPlatform from "../../AboutPlatform";
+import Banner from "../../Banner";
+import JobCard from "../../JobCard";
 import TopJobCatagories from "../../TopJobCatagories";
+import AboutPlatform from "../../AboutPlatform";
 
 const Home = () => {
   const data = useLoaderData();
   const { theme, toggleTheme } = useContext(ThemeContext);
 
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
+    <div>
       {/* Theme Toggle Button */}
-      <div className="flex justify-end p-4">
-        <button
-          onClick={toggleTheme}
-          className="px-4 py-2 rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 transition"
-        >
+      <div style={{ display: "flex", justifyContent: "flex-end", padding: "16px" }}>
+        <button onClick={toggleTheme}>
           {theme === "light" ? "🌞 Light" : "🌙 Dark"}
         </button>
       </div>
 
       <Banner />
 
-      <div className="grid gap-6 p-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-  {data.map((job) => (
-    <JobCard key={job._id} job={job} />
-  ))}
-</div>
+      <div
+        style={{
+          display: "grid",
+          gap: "16px",
+          padding: "16px",
+          gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+        }}
+      >
+        {data.map((job) => (
+          <JobCard key={job._id} job={job} />
+        ))}
+      </div>
 
-      <div>
-        <TopJobCatagories></TopJobCatagories>
-      </div>
-      <div>
-        <AboutPlatform></AboutPlatform>
-      </div>
+      <TopJobCatagories />
+      <AboutPlatform />
     </div>
   );
 };

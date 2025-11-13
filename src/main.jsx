@@ -18,9 +18,13 @@ import UpdateProfile from './Components/Header/Pages/UpdateProfile.jsx';
 import MyaddJob from './Components/Header/Pages/MyaddJob.jsx';
 import NotFound from './Components/Header/Pages/NotFound.jsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import ThemeProvider from './Context/ThemeProvider.jsx';
+
 import AcceptedTasks from './Components/Header/Pages/AcceptedTasks.jsx';
  import { ToastContainer,  } from 'react-toastify';
+import { ThemeProvider } from './Context/ThemeProvider.jsx';
+
+
+
 
 const router = createBrowserRouter([
   {
@@ -62,9 +66,10 @@ const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <ThemeProvider>
+   
       <QueryClientProvider client={queryClient}>    
-      <AuthProvider>
+      <ThemeProvider>
+        <AuthProvider>
         <RouterProvider router={router} />
          <ToastContainer
          position="top-right"
@@ -79,7 +84,8 @@ createRoot(document.getElementById("root")).render(
             theme="colored"
           />
       </AuthProvider>
+      </ThemeProvider>
     </QueryClientProvider>
-    </ThemeProvider>
+    
   </StrictMode>
 );

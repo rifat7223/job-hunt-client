@@ -7,7 +7,6 @@ const AddaJobs = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const newJob = {
       title: e.target.title.value,
       postedBy: e.target.postedBy.value,
@@ -18,6 +17,8 @@ const AddaJobs = () => {
       createdAt: new Date(),
     };
 
+    console.log(newJob);
+
     fetch("http://localhost:3000/allJobs", {
       method: "POST",
       headers: {
@@ -25,38 +26,36 @@ const AddaJobs = () => {
       },
       body: JSON.stringify(newJob),
     })
+    
       .then((res) => res.json())
       .then((data) => {
-        if (data.insertedId) {
-          Swal.fire({
-            title: "Success!",
-            text: "Job added successfully!",
-            icon: "success",
-            confirmButtonColor: "#6A38C2",
-          });
-          e.target.reset();
-        } else {
-          Swal.fire({
-            title: "Error!",
-            text: "Something went wrong. Please try again.",
-            icon: "error",
-            confirmButtonColor: "#6A38C2",
-          });
-        }
+        console.log(data);
+        Swal.fire({
+  title: "Add a job succefully",
+  showClass: {
+    popup: `
+      animate__animated
+      animate__fadeInUp
+      animate__faster
+    `
+  },
+  hideClass: {
+    popup: `
+      animate__animated
+      animate__fadeOutDown
+      animate__faster
+    `
+  }
+});
+        e.target.reset();
       })
       .catch((error) => {
-        console.error(error);
-        Swal.fire({
-          title: "Error!",
-          text: "Failed to add job.",
-          icon: "error",
-          confirmButtonColor: "#6A38C2",
-        });
+        console.log(error);
       });
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-purple-50 via-white to-purple-100">
+    <div className="min-h-screen flex items-center justify-center bg-linear-to-b from-purple-50 via-white to-purple-100">
       <form
         onSubmit={handleSubmit}
         className="max-w-md w-full bg-white p-8 rounded-2xl shadow-xl space-y-5 border border-purple-100"

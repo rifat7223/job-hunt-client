@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLoaderData } from 'react-router';
+import Swal from 'sweetalert2';
 
 const UpdateProfile = () => {
      const job=useLoaderData()
@@ -26,12 +27,29 @@ const UpdateProfile = () => {
        .then(res=>res.json())
        .then(data=>{
         console.log(data);
-        
+        Swal.fire({
+        toast: true,
+        position: 'top-end',
+        icon: 'success',
+        title: 'Job updated successfully!',
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+      });
         
        })
         .catch(error=>{
             console.log(error)
             e.target.reset()
+              Swal.fire({
+        toast: true,
+        position: 'top-end',
+        icon: 'error',
+        title: 'Failed to update job!',
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+      });
         })
      
     }

@@ -8,3 +8,32 @@
 *{
   font-family: "Inter", sans-serif;
 }
+
+/* index.css */
+body {
+  background-color: #ffffff;
+  color: #000000;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark {
+  background-color: #121212;
+  color: #f1f1f1;
+}
+
+button {
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+}
+
+body.dark button {
+  background-color: #444;
+  color: #fff;
+}
+
+body button {
+  background-color: #ddd;
+  color: #000;
+}

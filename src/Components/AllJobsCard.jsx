@@ -3,8 +3,10 @@ import { Link } from "react-router";
 import { motion } from "framer-motion";
 
 const AllJobsCard = ({ allJobs }) => {
-  const { title, category, postedBy, summary, coverImage, _id } = allJobs;
+  const { title, category, postedBy, summary, coverImage, _id,
+createdAt } = allJobs;
 
+console.log(createdAt,title)
   return (
      <motion.div
       initial={{ opacity: 0, y: 40, scale: 0.95 }}
@@ -40,6 +42,10 @@ const AllJobsCard = ({ allJobs }) => {
           <p className="text-gray-700 dark:text-gray-200 text-sm line-clamp-3">
             {summary}
           </p>
+         <p>Time: {
+createdAt ? 
+createdAt : "Not available"}</p>
+
         </div>
 
         {/* View Details Button */}
