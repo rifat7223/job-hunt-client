@@ -42,7 +42,7 @@ const router = createBrowserRouter([
         
       },
       {
-        path:'/updateprofile/:id',element:<UpdateProfile></UpdateProfile>,
+        path:'/updateprofile/:id',element:<PrivateRoute><UpdateProfile></UpdateProfile></PrivateRoute>,
          loader: ({ params }) => fetch(`http://localhost:3000/allJobs/${params.id}`).then(res => res.json())
 
       },

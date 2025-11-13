@@ -27,12 +27,13 @@ const UpdateProfile = () => {
        .then(data=>{
         console.log(data);
         
+        
        })
         .catch(error=>{
             console.log(error)
             e.target.reset()
         })
-      alert("update succfully")
+     
     }
 
     return (

@@ -25,11 +25,12 @@ const Home = () => {
 
       <Banner />
 
-      <div className="grid grid-cols-3 gap-11 p-4">
-        {data.map((job) => (
-          <JobCard key={job._id} job={job} />
-        ))}
-      </div>
+      <div className="grid gap-6 p-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+  {data.map((job) => (
+    <JobCard key={job._id} job={job} />
+  ))}
+</div>
+
       <div>
         <TopJobCatagories></TopJobCatagories>
       </div>

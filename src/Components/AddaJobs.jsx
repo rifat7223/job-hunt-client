@@ -1,11 +1,13 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../Context/AuthProvider";
+import Swal from "sweetalert2";
 
 const AddaJobs = () => {
   const { user } = useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const newJob = {
       title: e.target.title.value,
       postedBy: e.target.postedBy.value,
@@ -16,8 +18,6 @@ const AddaJobs = () => {
       createdAt: new Date(),
     };
 
-    console.log(newJob);
-
     fetch("http://localhost:3000/allJobs", {
       method: "POST",
       headers: {
@@ -27,11 +27,31 @@ const AddaJobs = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        e.target.reset();
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Success!",
+            text: "Job added successfully!",
+            icon: "success",
+            confirmButtonColor: "#6A38C2",
+          });
+          e.target.reset();
+        } else {
+          Swal.fire({
+            title: "Error!",
+            text: "Something went wrong. Please try again.",
+            icon: "error",
+            confirmButtonColor: "#6A38C2",
+          });
+        }
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
+        Swal.fire({
+          title: "Error!",
+          text: "Failed to add job.",
+          icon: "error",
+          confirmButtonColor: "#6A38C2",
+        });
       });
   };
 
