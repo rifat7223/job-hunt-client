@@ -22,3 +22,7 @@ A modern job portal web application built with **React**, **React Router**, and 
 
 ```bash
 git clone https://github.com/yourusername/alljobs.git
+
+
+live client link:https://graceful-malasada-294a90.netlify.app/
+live server Link:https://job-hunter-server-one.vercel.app/
