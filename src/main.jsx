@@ -51,10 +51,10 @@ const router = createBrowserRouter([
 
       },
       {
-        path:'/myaddjob', element:<MyaddJob></MyaddJob>
+        path:'/myaddjob', element:<PrivateRoute><MyaddJob></MyaddJob></PrivateRoute>
       },
       {
-        path:'/acceptedTasks', element:<AcceptedTasks></AcceptedTasks>
+        path:'/acceptedTasks', element:<PrivateRoute><AcceptedTasks></AcceptedTasks></PrivateRoute>
       },
       { path: "/*", element: <NotFound></NotFound>},
     ]
