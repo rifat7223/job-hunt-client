@@ -6,12 +6,12 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyA0cqA4Ym2YBqq7N0vvsatXqZDctvB_feg",
-  authDomain: "job-hunt-4e210.firebaseapp.com",
-  projectId: "job-hunt-4e210",
-  storageBucket: "job-hunt-4e210.firebasestorage.app",
-  messagingSenderId: "228498324923",
-  appId: "1:228498324923:web:891a27e3e58d282845589e"
+  apiKey:import.meta.env.VITE_APIKEY,
+  authDomain:import.meta.env.VITE_AUTHDOMAIN ,
+  projectId: import.meta.env.VITE_PROJECTID,
+  storageBucket:import.meta.env.VITE_STORAGEBUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGINGSENDERID,
+  appId: import.meta.env.VITE_appId
 };
 
 // Initialize Firebase

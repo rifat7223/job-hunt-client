@@ -33,7 +33,7 @@ const router = createBrowserRouter([
       { path: '/alljob',
         loader:()=>fetch('http://localhost:3000/allJobs'),
          element:<PrivateRoute><AllJobs></AllJobs></PrivateRoute> },
-         {path:'/addajob',element:<AddaJobs></AddaJobs>},
+         {path:'/addajob',element:<PrivateRoute><AddaJobs></AddaJobs></PrivateRoute>},
       { path: '/login', Component: Login },
       { path: '/register', Component: Register },
       {

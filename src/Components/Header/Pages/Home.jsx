@@ -4,6 +4,8 @@ import Banner from "../../Banner";
 import { useLoaderData } from "react-router";
 import JobCard from "../../JobCard";
 import { ThemeContext } from "../../../Context/ThemeProvider";
+import AboutPlatform from "../../AboutPlatform";
+import TopJobCatagories from "../../TopJobCatagories";
 
 const Home = () => {
   const data = useLoaderData();
@@ -27,6 +29,12 @@ const Home = () => {
         {data.map((job) => (
           <JobCard key={job._id} job={job} />
         ))}
+      </div>
+      <div>
+        <TopJobCatagories></TopJobCatagories>
+      </div>
+      <div>
+        <AboutPlatform></AboutPlatform>
       </div>
     </div>
   );
