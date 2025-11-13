@@ -54,7 +54,7 @@ const Login = () => {
           email:result.user.email,
           image:result.user.photoURL
         }
-        fetch('http://localhost:3000/user',{
+        fetch('https://job-hunter-server-one.vercel.app/user',{
           method:"POST",
           headers:{
             'content-type':'application/json'

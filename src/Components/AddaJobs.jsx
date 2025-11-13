@@ -19,7 +19,7 @@ const AddaJobs = () => {
 
     console.log(newJob);
 
-    fetch("http://localhost:3000/allJobs", {
+    fetch("https://job-hunter-server-one.vercel.app/allJobs", {
       method: "POST",
       headers: {
         "content-type": "application/json",

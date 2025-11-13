@@ -14,7 +14,7 @@ const AcceptedTasks = () => {
   const { data: tasks = [], isLoading } = useQuery({
     queryKey: ['acceptedTasks', user?.email],
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:3000/acceptedTasks?userEmail=${user?.email}`);
+      const res = await axios.get(`https://job-hunter-server-one.vercel.app/acceptedTasks?userEmail=${user?.email}`);
       return res.data;
     },
   });
@@ -22,7 +22,7 @@ const AcceptedTasks = () => {
   // Mutation to delete task (DONE/CANCEL)
   const deleteTaskMutation = useMutation({
     mutationFn: async (id) => {
-      await axios.delete(`http://localhost:3000/acceptedTasks/${id}`);
+      await axios.delete(`https://job-hunter-server-one.vercel.app/acceptedTasks/${id}`);
     },
     onSuccess: (_, id) => {
       queryClient.setQueryData(['acceptedTasks', user?.email], (old) =>

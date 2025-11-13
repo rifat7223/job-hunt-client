@@ -32,22 +32,22 @@ const router = createBrowserRouter([
     Component: Root,
     children: [
       { index: true,
-        loader:()=>fetch('http://localhost:3000/job'),
+        loader:()=>fetch('https://job-hunter-server-one.vercel.app/job'),
          element:<Home></Home> },
       { path: '/alljob',
-        loader:()=>fetch('http://localhost:3000/allJobs'),
+        loader:()=>fetch('https://job-hunter-server-one.vercel.app/allJobs'),
          element:<PrivateRoute><AllJobs></AllJobs></PrivateRoute> },
          {path:'/addajob',element:<PrivateRoute><AddaJobs></AddaJobs></PrivateRoute>},
       { path: '/login', Component: Login },
       { path: '/register', Component: Register },
       {
         path:'/jobdetails/:id', element:<JobDetails></JobDetails>,
-       loader: ({ params }) => fetch(`http://localhost:3000/allJobs/${params.id}`).then(res => res.json())
+       loader: ({ params }) => fetch(`https://job-hunter-server-one.vercel.app/allJobs/${params.id}`).then(res => res.json())
         
       },
       {
         path:'/updateprofile/:id',element:<PrivateRoute><UpdateProfile></UpdateProfile></PrivateRoute>,
-         loader: ({ params }) => fetch(`http://localhost:3000/allJobs/${params.id}`).then(res => res.json())
+         loader: ({ params }) => fetch(`https://job-hunter-server-one.vercel.app/allJobs/${params.id}`).then(res => res.json())
 
       },
       {

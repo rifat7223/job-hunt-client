@@ -11,7 +11,7 @@ const AllJobs = () => {
   const { data: jobs = [], isLoading, isError } = useQuery({
     queryKey: ["jobs"],
     queryFn: async () => {
-      const res = await axios.get("http://localhost:3000/allJobs");
+      const res = await axios.get("https://job-hunter-server-one.vercel.app/allJobs");
       return res.data;
     },
   });

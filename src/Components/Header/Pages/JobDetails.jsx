@@ -14,7 +14,7 @@ const JobDetails = () => {
 
   const handleAccept = async () => {
     try {
-      await axios.post("http://localhost:3000/acceptedTasks", {
+      await axios.post("https://job-hunter-server-one.vercel.app/acceptedTasks", {
         ...job,
         userEmail: user.email,
         acceptedAt: new Date().toISOString(),
