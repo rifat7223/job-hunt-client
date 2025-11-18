@@ -12,8 +12,9 @@ A modern job portal web application built with **React**, **React Router**, and 
 - Dynamic routing with **React Router v6**  
 
 ## Screenshots
+![App Screenshot](https://github.com/rifat7223/job-hunt-client/blob/359183c3e3ec31d7627a8e91d6cc87ea2a1c19af/Screenshot%202025-11-18%20233221.png
+)
 
-https://github.com/rifat7223/job-hunt-client/blob/main/Screenshot%202025-11-18%20233221.png?raw=true
 
 ## Installation
 
