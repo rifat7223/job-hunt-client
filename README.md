@@ -13,8 +13,7 @@ A modern job portal web application built with **React**, **React Router**, and 
 
 ## Screenshots
 
-![AllJobs Banner](screenshot-banner.png)  
-![Job Listings](screenshot-jobs.png)  
+https://github.com/rifat7223/job-hunt-client/blob/main/Screenshot%202025-11-18%20233221.png?raw=true
 
 ## Installation
 
